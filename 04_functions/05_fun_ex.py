@@ -20,10 +20,8 @@ while run:
     num = int(input("숫자입력 : "))
 
     if num == 1:
-        print("1번")
         mul1()
     elif num == 2:
-        print("2")
         mul2()
     elif num == 3:
         print("종료")
