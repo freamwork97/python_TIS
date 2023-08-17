@@ -19,7 +19,9 @@ wait = WebDriverWait(driver, 10)
 element = wait.until(EC.element_to_be_clickable(
     (By.CSS_SELECTOR, '[class="text"]')))
 
+# 네이버 웹툰 제목 요소 접근
 webtoon = driver.find_elements(By.CSS_SELECTOR, '[class="text"]')
 
 for i in webtoon:
     print(i.text)
+print('전체 수 : ', len(webtoon))
