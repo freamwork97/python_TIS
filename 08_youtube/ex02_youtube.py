@@ -47,6 +47,3 @@ for i in titles:
     print(i.text)  # innerHTML 값
 
 time.sleep(5)
-
-# https://www.youtube.com/results?search_query=콜오브듀티
-# https://www.youtube.com/results?search_query=로스트아크
