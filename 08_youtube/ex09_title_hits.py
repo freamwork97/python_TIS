@@ -6,18 +6,14 @@ import time
 ###########################################
 
 ###########################################
-# while문을 적용하여 무한스크롤 구현하기     #
-# while문 내부동작                         #
-# 1. 처음 높이값 확인                      #
-# 2. 높이만큼 스크롤 내리기                 #
-# 3. 높이값 확인                           #
-# 4. 높이가 같다면 break로 while문 중단     #
+# 1. 유튜브 홈페이지 접속
+# 2. 검색어 입력
+# 3. 엔터
+# 4. 필터 클릭
+# 5. 조회수 클릭
+# 6. 무한 스크롤
+# 7. 제목 수집
 ###########################################
-
-driver = webdriver.Chrome()
-driver.get('https://www.youtube.com')
-
-# 스크롤 후 제목데이터를 리턴하는 함수로 정의
 
 
 def scroll_fun():
@@ -40,14 +36,30 @@ def scroll_fun():
         if h1 == h2:
             break
 
-    # 제목 가져오기
-    titles = driver.find_elements(By.XPATH, '//*[@id="video-title"]')
-    return titles
 
+# 크롬 실행
+driver = webdriver.Chrome()
+
+# 접속할 주소
+driver.get('https://www.youtube.com/')
+time.sleep(2)
 
 # 무한스크롤 함수 호출
-titles = scroll_fun()
+scroll_fun()
+
+# 제목 요소 접근
+titles = driver.find_elements(By.XPATH, '//*[@id="video-title"]')
 
 for i in titles:
-    print(i.text)  # innerHTML 값
-print("영상 갯수 : ", len(titles))
+    if i.get_attribute("aria-label") and i.text:  # shorts 영상을 걸러내기 위한 조건문
+        # aria_label 속성값 가져오기
+        aria_label = i.get_attribute("aria-label")
+
+        print(aria_label)
+
+        start_index = aria_label.rfind("조회수")+4
+        end_index = aria_label.rfind("회")
+        hits = aria_label[start_index:end_index]
+        hits = int(hits.replace(",", ""))
+        print('제목', i.text)
+        print('조회수', hits)
