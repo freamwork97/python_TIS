@@ -32,8 +32,5 @@ many.send_keys(Keys.RETURN)
 
 # 제목 요소 접근
 titles = driver.find_elements(By.CLASS_NAME, 'news_tit')
-# //*[@id="sp_nws_all2"]/div/div/a
 for i in titles:
     print(i.text)  # innerHTML 값
-    # print(i.tag_name)  # 해당 요소의 태그 이름
-    # print(i.get_attribute("aria-label"))  # 해당 요소의 aria-label 속성값 가져오기
