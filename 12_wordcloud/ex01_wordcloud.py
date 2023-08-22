@@ -37,3 +37,6 @@ plt.imshow(result)
 
 # 이미지 출력
 plt.show()
+
+# 워드 클라우드 파일저장
+wc.to_file('wordcloud_result.png')
